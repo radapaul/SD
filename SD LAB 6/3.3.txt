@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) 
+    {
+        vector<string> sol;
+        map<string, int> m;
+        
+        for(int i = 0; i <= (int)s.size() - 10; i++){
+            string sub = s.substr(i,10);
+            if (m.find(sub) == m.end()){
+                m[sub] = 1;
+            }
+            else{
+                m[sub] = m[sub] + 1;
+            }
+        }
+        for(map<string, int>::iterator it = m.begin(); it != m.end(); ++it)
+            if (it->second>>1)
+                sol.push_back(it->first);
+            
+        return sol;
+    }
+};

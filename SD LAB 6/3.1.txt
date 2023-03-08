@@ -1,0 +1,28 @@
+vector<string> run(string s){
+    string taste[10] = { "0", "0", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
+    list<string> lista;
+    for (auto c : s) {
+        list<string> temp;
+        int key = c - 48;	
+        for (auto litera : taste[key]) {
+            if (lista.size() == 0) {
+                string s(1, litera);
+                temp.push_back(s);
+            }
+            for (auto prefix : lista)
+                temp.push_back(prefix + litera);
+        }
+        lista = temp;
+    }
+    vector<string>v;
+    for (auto item : lista)
+        v.push_back(item);
+    return v;
+    }
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        return run(digits);
+    }
+};
